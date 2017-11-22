@@ -1,0 +1,145 @@
+.586
+
+.MODEL FLAT
+
+INCLUDE io.h 
+
+.STACK 4096
+
+.DATA
+
+	resultlbl1 BYTE "The total is" ,0
+
+	resultlbl2 BYTE "The average is" ,0	
+
+	resultlbl3 BYTE "The reminder is" ,0	
+
+	x DWORD ?
+
+	y DWORD ?
+
+	z DWORD ?
+
+	w DWORD ?
+
+	f DWORD ?
+
+
+
+	
+
+	four BYTE 	"4" ,0
+
+	
+
+	result BYTE 11 DUP (5) ,0
+
+	prompt1 BYTE 	"Enter grade 1" ,0
+
+	prompt2 BYTE 	"Enter grade 2",0
+
+	prompt3 BYTE 	"Enter grade 3",0
+
+	prompt4 BYTE 	"Enter grade 4",0
+
+
+
+	string BYTE 40 DUP (?)
+
+
+
+.CODE 
+
+	MainProc PROC
+
+
+
+			atod four
+
+			mov f,eax
+
+
+
+			input prompt1,string,40
+
+			atod string
+
+			mov x,eax
+
+
+
+			input prompt2,string,40
+
+			atod string
+
+			mov y,eax
+
+
+
+			input prompt3,string,40
+
+			atod string
+
+			mov z,eax
+
+
+
+			input prompt4,string,40
+
+			atod string
+
+			mov w,eax
+
+
+
+			;add x y z w and save them in x
+
+			mov eax,x
+
+			add eax,y
+
+			add eax,z
+
+			add eax,w
+
+			mov x,eax
+
+
+
+			mov edx,0
+
+			mov ecx,f
+
+			div ecx
+
+
+
+			
+
+			dtoa result,x
+
+			output resultlbl2,result
+
+
+
+		
+
+			dtoa result,eax
+
+			output resultlbl2,result
+
+
+
+			dtoa result,edx
+
+			output resultlbl3,result
+
+
+
+			mov eax ,0
+
+			ret 
+
+	MainProc ENDP
+
+END
