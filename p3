@@ -1,0 +1,75 @@
+.586
+
+.MODEL FLAT
+
+INCLUDE io.h
+
+.DATA
+
+  x DWORD ?
+
+  y DWORD ?
+
+  t DWORD ?
+
+
+
+  TWO BYTE "2",0
+
+
+
+  result BYTE "THE PERIMETER IS ",0
+
+  resultble BYTE 30 DUP(?)
+
+  
+
+  l BYTE "enter length" ,0
+
+  w BYTE  "enter width",0
+
+  string BYTE 30 DUP(?)
+
+  .CODE
+
+  MainProc PROC
+
+    atod TWO
+
+	mov t,eax
+
+    input l ,string, 30
+
+	atod string
+
+	mov x,eax
+
+	mul t
+
+	mov x,eax
+
+	input w ,string ,30
+
+	atod string
+
+	mov y ,eax
+
+	mul t
+
+	mov y,eax
+
+	add eax,x
+
+	mov x,eax
+
+	dtoa resultble,eax
+
+	output result,resultble
+
+	mov eax,0
+
+	ret
+
+	MainProc ENDP
+
+	END
