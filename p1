@@ -1,0 +1,61 @@
+.586
+.MODEL FLAT
+INCLUDE io.h 
+.STACK 4096
+.DATA
+	resultlbl BYTE "The result is" ,0	
+	x DWORD ?
+	y DWORD ?
+	z DWORD ?
+	t DWORD ?
+	
+	two BYTE 	"2" ,0
+	
+	result BYTE 11 DUP (5) ,0
+	prompt1 BYTE 	"Enter X" ,0
+	prompt2 BYTE 	"Enter Y",0
+	prompt3 BYTE 	"Enter Z",0
+
+	string BYTE 40 DUP (?)
+
+.CODE 
+	MainProc PROC
+
+			atod two
+			mov t,eax
+
+			input prompt1,string,40
+			atod string
+			mov x,eax
+
+			input prompt2,string,40
+			atod string
+			mov y,eax
+
+			add eax,x
+			mov x,eax
+
+
+			input prompt3,string,40
+			atod string
+			mov z,eax
+
+			mul t
+			
+			mov z,eax
+			mov eax,x
+
+			sub eax,z
+
+			add eax,1
+			
+			imul eax,-1
+		
+
+			dtoa result,eax
+			output resultlbl,result
+
+			mov eax ,0
+			ret 
+	MainProc ENDP
+END
